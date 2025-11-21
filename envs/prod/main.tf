@@ -12,17 +12,18 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
-module "network" {
-  source = "../../modules/network"
+# module "network" {
+#   source = "../../modules/network"
 
-  env                 = "prod"
-  vpc_cidr            = "10.1.0.0/16"
-  private_subnet_cidr = "10.1.1.0/24"
+#   env                 = "prod"
+#   vpc_cidr            = "10.1.0.0/16"
+#   private_subnet_cidr = "10.1.1.0/24"
 
-  ami_id        = data.aws_ami.amazon_linux.id
-  instance_type = "t3.micro"
-}
+#   ami_id        = data.aws_ami.amazon_linux.id
+#   instance_type = "t3.micro"
+# }
 
-output "prod_ec2_id" {
-  value = module.network.ec2_id
-}
+# output "prod_ec2_id" {
+#   value = module.network.ec2_id
+# }
+#
