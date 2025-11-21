@@ -2,6 +2,16 @@ provider "aws" {
   region = "ap-northeast-1"
 }
 
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["al2023-ami-*-x86_64"]
+  }
+}
+
 module "network" {
   source = "../../modules/network"
 
@@ -9,7 +19,7 @@ module "network" {
   vpc_cidr            = "10.1.0.0/16"
   private_subnet_cidr = "10.1.1.0/24"
 
-  ami_id = "ami-060e6df00d4e4c5c2"  # 同じで可
+  ami_id        = data.aws_ami.amazon_linux.id
   instance_type = "t3.micro"
 }
 
