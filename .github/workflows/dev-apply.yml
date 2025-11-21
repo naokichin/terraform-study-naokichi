@@ -23,7 +23,6 @@ jobs:
           role-to-assume: ${{ secrets.GITHUBACTIONS_OIDC_ARN }}
           aws-region: ap-northeast-1
 
-      # ✨ ← これが抜けていた
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
