@@ -23,6 +23,6 @@ data "aws_ami" "amazon_linux" {
 #   instance_type = "t3.micro"
 # }
 
-output "prod_ec2_id" {
-  value = module.network.ec2_id
-}
+# output "prod_ec2_id" {
+#   value = module.network.ec2_id
+# }
