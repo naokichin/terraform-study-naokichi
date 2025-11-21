@@ -9,7 +9,7 @@ module "network" {
   vpc_cidr            = "10.0.0.0/16"
   private_subnet_cidr = "10.0.1.0/24"
 
-  ami_id        = "ami-0a0a0b0c0d0e0f0g0"  # ← 東京リージョン用AMIを指定（後で教える）
+  ami_id = "ami-0f36dcfc7ca70a913"  # ← 東京リージョン用AMIを指定（後で教える）
   instance_type = "t3.micro"
 }
 
