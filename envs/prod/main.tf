@@ -26,4 +26,3 @@ data "aws_ami" "amazon_linux" {
 # output "prod_ec2_id" {
 #   value = module.network.ec2_id
 # }
-#
