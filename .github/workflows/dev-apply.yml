@@ -1,12 +1,12 @@
-name: Terraform Apply
+name: Terraform Apply (dev)
 
 on:
   push:
     branches:
-      - main
+      - dev
 
 permissions:
-  id-token: write   # GitHub OIDC 用
+  id-token: write
   contents: read
 
 jobs:
@@ -20,19 +20,23 @@ jobs:
       - name: Configure AWS credentials (assume role)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.GITHUBACTIONS_OIDC_ARN }}  # Secrets に設定したロールARN
+          role-to-assume: ${{ secrets.GITHUBACTIONS_OIDC_ARN }}
           aws-region: ap-northeast-1
 
+      # ✨ ← これが抜けていた
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.8.5
 
       - name: Terraform Init
+        working-directory: ./envs/dev
         run: terraform init
 
       - name: Terraform Plan
+        working-directory: ./envs/dev
         run: terraform plan
 
       - name: Terraform Apply
+        working-directory: ./envs/dev
         run: terraform apply -auto-approve
